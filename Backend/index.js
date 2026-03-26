@@ -2,6 +2,7 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const { auth } = require("./middleware/authMiddleware");
 
 const connectDB = require("./config/database");
 const authRoutes = require("./routes/authRoutes");
@@ -35,6 +36,16 @@ app.get("/test", (req, res) => {
 
 app.use("/api/auth", authRoutes);
 app.use("/api/jobs", jobRoutes);
+
+
+
+app.get("/api/protected", auth, (req, res) => {
+  res.json({
+    success: true,
+    message: "Protected route accessed",
+    user: req.user,
+  });
+});
 
 const PORT = process.env.PORT || 8000;
 
