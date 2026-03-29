@@ -5,9 +5,10 @@ const Home = () => {
     <div className="page-bg subtle-grid">
       <section className="container-shell flex min-h-screen flex-col justify-center py-12 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
         <div className="max-w-3xl">
-          <div className="pill-badge mb-6">
-            MERN Stack Job Tracker
-          </div>
+                        <div className="hero-tag mb-6 w-fit">
+                <span className="hero-tag-ring"></span>
+                <span className="hero-tag-text">MERN Stack Job Tracker</span>
+                </div>
 
           <h1 className="hero-title">
             Track your job applications with clarity, focus, and style.
