@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
+import Navbar from "../components/Navbar";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -31,11 +32,6 @@ const Dashboard = () => {
     fetchJobs();
   }, []);
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/");
-  };
-
   const handleDelete = async (id) => {
     const token = localStorage.getItem("token");
 
@@ -55,10 +51,9 @@ const Dashboard = () => {
 
   return (
     <div>
-      <h2>Dashboard</h2>
+      <Navbar />
 
-      <button onClick={() => navigate("/add-job")}>Add Job</button>
-      <button onClick={handleLogout}>Logout</button>
+      <h2>Dashboard</h2>
 
       <h3>Your Jobs</h3>
 
