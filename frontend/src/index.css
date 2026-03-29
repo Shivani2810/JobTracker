@@ -28,6 +28,56 @@ a {
 }
 
 @layer components {
+    .welcome-badge {
+  @apply inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium;
+  position: relative;
+  color: #e6fdf5;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(16, 185, 129, 0.25);
+  backdrop-filter: blur(12px);
+  box-shadow:
+    0 0 0 1px rgba(16, 185, 129, 0.15),
+    0 8px 30px rgba(16, 185, 129, 0.15);
+}
+
+/* glowing dot */
+.welcome-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #34d399;
+  box-shadow: 0 0 8px #34d399, 0 0 18px #34d399;
+  animation: pulseGlow 1.8s infinite ease-in-out;
+}
+
+/* soft animated glow border */
+.welcome-badge::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    120deg,
+    rgba(16, 185, 129, 0.35),
+    rgba(34, 211, 238, 0.35),
+    rgba(99, 102, 241, 0.35)
+  );
+  opacity: 0.25;
+  filter: blur(12px);
+  z-index: -1;
+}
+
+/* animation */
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.2);
+  }
+}
   .page-bg {
     @apply min-h-screen text-slate-100;
   }

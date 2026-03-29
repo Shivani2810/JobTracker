@@ -33,7 +33,10 @@ const Login = () => {
     <div className="page-bg subtle-grid">
       <div className="container-shell grid min-h-screen grid-cols-1 lg:grid-cols-2">
         <div className="flex flex-col justify-center py-12 lg:pr-12">
-          <div className="pill-badge mb-6 w-fit">Welcome back</div>
+         <div className="welcome-badge mb-6 w-fit">
+              <span className="welcome-dot"></span>
+                  Welcome back
+              </div>
           <h1 className="hero-title">Own your job search journey.</h1>
           <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
             Log in to manage applications, update statuses, and keep your
