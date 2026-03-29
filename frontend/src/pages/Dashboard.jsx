@@ -39,6 +39,8 @@ const Dashboard = () => {
   return (
     <div>
       <h2>Dashboard</h2>
+
+      <button onClick={() => navigate("/add-job")}>Add Job</button>
       <button onClick={handleLogout}>Logout</button>
 
       <h3>Your Jobs</h3>
