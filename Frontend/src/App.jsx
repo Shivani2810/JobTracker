@@ -1,16 +1,5 @@
-import { useState } from 'react'
-
-import './App.css'
-
 function App() {
- 
-
-  return (
-    
-      <div>
-        
-      </div>
-  )
+  return <h1>Job Tracker Frontend</h1>;
 }
 
-export default App
+export default App;
