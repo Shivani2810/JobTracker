@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
+import Navbar from "../components/Navbar";
 
 const AddJob = () => {
   const navigate = useNavigate();
@@ -44,6 +45,8 @@ const AddJob = () => {
 
   return (
     <div>
+      <Navbar />
+
       <h2>Add Job</h2>
 
       <form onSubmit={handleSubmit}>
