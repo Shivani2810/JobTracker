@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import api from "../services/api";
+import Navbar from "../components/Navbar";
 
 const EditJob = () => {
   const navigate = useNavigate();
@@ -74,6 +75,8 @@ const EditJob = () => {
 
   return (
     <div>
+      <Navbar />
+
       <h2>Edit Job</h2>
 
       <form onSubmit={handleSubmit}>
