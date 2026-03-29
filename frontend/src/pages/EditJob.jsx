@@ -18,7 +18,7 @@ const EditJob = () => {
       const token = localStorage.getItem("token");
 
       if (!token) {
-        navigate("/");
+        navigate("/login");
         return;
       }
 
@@ -43,10 +43,10 @@ const EditJob = () => {
   }, [id, navigate]);
 
   const handleChange = (e) => {
-    setFormData({
-      ...formData,
+    setFormData((prev) => ({
+      ...prev,
       [e.target.name]: e.target.value,
-    });
+    }));
   };
 
   const handleSubmit = async (e) => {
@@ -55,7 +55,7 @@ const EditJob = () => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      navigate("/");
+      navigate("/login");
       return;
     }
 
@@ -66,55 +66,74 @@ const EditJob = () => {
         },
       });
 
-      alert("Job updated successfully");
       navigate("/dashboard");
     } catch (error) {
       alert(error.response?.data?.message || "Failed to update job");
     }
   };
 
-  return (   // ✅ THIS must be inside function
-    <div className="min-h-screen bg-slate-100">
+  return (
+    <div className="page-bg subtle-grid">
       <Navbar />
 
       <div className="flex items-center justify-center px-4 py-10">
-        <div className="w-full max-w-xl rounded-2xl bg-white p-8 shadow-lg">
-          <h2 className="text-3xl font-bold text-slate-800">Edit Job</h2>
+        <div className="glass-card w-full max-w-xl p-8">
+          <h1 className="section-title">Edit Job</h1>
+          <p className="mt-2 text-slate-300">Update your application details</p>
 
           <form onSubmit={handleSubmit} className="mt-8 space-y-5">
-            <input
-              type="text"
-              name="company"
-              value={formData.company}
-              onChange={handleChange}
-              placeholder="Company"
-              className="w-full rounded-xl border px-4 py-3"
-            />
+            <div>
+              <label className="label-text">Company</label>
+              <input
+                type="text"
+                name="company"
+                value={formData.company}
+                onChange={handleChange}
+                placeholder="Enter company name"
+                className="input-field"
+              />
+            </div>
 
-            <input
-              type="text"
-              name="role"
-              value={formData.role}
-              onChange={handleChange}
-              placeholder="Role"
-              className="w-full rounded-xl border px-4 py-3"
-            />
+            <div>
+              <label className="label-text">Role</label>
+              <input
+                type="text"
+                name="role"
+                value={formData.role}
+                onChange={handleChange}
+                placeholder="Enter job role"
+                className="input-field"
+              />
+            </div>
 
-            <select
-              name="status"
-              value={formData.status}
-              onChange={handleChange}
-              className="w-full rounded-xl border px-4 py-3"
-            >
-              <option>Applied</option>
-              <option>Interview</option>
-              <option>Offer</option>
-              <option>Rejected</option>
-            </select>
+            <div>
+              <label className="label-text">Status</label>
+              <select
+                name="status"
+                value={formData.status}
+                onChange={handleChange}
+                className="select-field"
+              >
+                <option value="Applied">Applied</option>
+                <option value="Interview">Interview</option>
+                <option value="Offer">Offer</option>
+                <option value="Rejected">Rejected</option>
+              </select>
+            </div>
 
-            <button className="w-full bg-blue-600 text-white py-3 rounded-xl">
-              Update Job
-            </button>
+            <div className="flex gap-3 pt-2">
+              <button type="submit" className="primary-btn flex-1">
+                Update Job
+              </button>
+
+              <button
+                type="button"
+                onClick={() => navigate("/dashboard")}
+                className="secondary-btn flex-1"
+              >
+                Cancel
+              </button>
+            </div>
           </form>
         </div>
       </div>

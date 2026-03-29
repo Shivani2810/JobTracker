@@ -14,7 +14,7 @@ const Dashboard = () => {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      navigate("/");
+      navigate("/login");
       return;
     }
 
@@ -51,11 +51,6 @@ const Dashboard = () => {
     }
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    navigate("/");
-  };
-
   const filteredJobs = useMemo(() => {
     return jobs.filter((job) => {
       const matchesSearch =
@@ -72,63 +67,55 @@ const Dashboard = () => {
   const getStatusClasses = (status) => {
     switch (status) {
       case "Applied":
-        return "bg-blue-100 text-blue-700";
+        return "status-applied";
       case "Interview":
-        return "bg-yellow-100 text-yellow-700";
+        return "status-interview";
       case "Offer":
-        return "bg-green-100 text-green-700";
+        return "status-offer";
       case "Rejected":
-        return "bg-red-100 text-red-700";
+        return "status-rejected";
       default:
-        return "bg-slate-100 text-slate-700";
+        return "pill-badge";
     }
   };
 
   return (
-    <div className="min-h-screen bg-slate-100">
+    <div className="page-bg subtle-grid">
       <Navbar />
 
-      <div className="max-w-6xl mx-auto px-4 py-8">
-        <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+      <div className="container-shell py-8">
+        <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
           <div>
-            <h1 className="text-3xl font-bold text-slate-800">Dashboard</h1>
-            <p className="text-slate-500 mt-1">
+            <h1 className="section-title">Dashboard</h1>
+            <p className="mt-1 text-slate-300">
               Track all your job applications
             </p>
           </div>
 
-          <div className="flex gap-3">
+          <div>
             <button
               onClick={() => navigate("/add-job")}
-              className="rounded-xl bg-blue-600 px-5 py-3 text-white font-medium hover:bg-blue-700 transition"
+              className="primary-btn"
             >
               Add Job
-            </button>
-
-            <button
-              onClick={handleLogout}
-              className="rounded-xl bg-slate-800 px-5 py-3 text-white font-medium hover:bg-slate-900 transition"
-            >
-              Logout
             </button>
           </div>
         </div>
 
-        {/* Search + Filter */}
-        <div className="mb-8 rounded-2xl bg-white p-4 shadow">
+        <div className="glass-card mb-8 p-4">
           <div className="grid gap-4 md:grid-cols-2">
             <input
               type="text"
               placeholder="Search by company or role"
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+              className="input-field"
             />
 
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+              className="select-field"
             >
               <option value="All">All Statuses</option>
               <option value="Applied">Applied</option>
@@ -140,21 +127,21 @@ const Dashboard = () => {
         </div>
 
         {filteredJobs.length === 0 ? (
-          <div className="rounded-2xl bg-white p-10 text-center shadow">
-            <p className="text-slate-600 text-lg">No matching jobs found.</p>
+          <div className="glass-card p-10 text-center">
+            <p className="text-lg text-slate-300">No matching jobs found.</p>
           </div>
         ) : (
           <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
             {filteredJobs.map((job) => (
               <div
                 key={job._id}
-                className="rounded-2xl bg-white p-6 shadow hover:shadow-md transition"
+                className="glass-card p-6 transition hover:-translate-y-1 hover:bg-white/[0.10]"
               >
-                <h2 className="text-xl font-bold text-slate-800">{job.role}</h2>
-                <p className="text-slate-600 mt-2">{job.company}</p>
+                <h2 className="text-2xl font-bold text-white">{job.role}</h2>
+                <p className="mt-2 text-slate-300">{job.company}</p>
 
                 <span
-                  className={`inline-block mt-4 rounded-full px-3 py-1 text-sm font-medium ${getStatusClasses(
+                  className={`mt-4 inline-flex rounded-full px-3 py-1 text-sm font-medium ${getStatusClasses(
                     job.status
                   )}`}
                 >
@@ -164,14 +151,14 @@ const Dashboard = () => {
                 <div className="mt-6 flex gap-3">
                   <button
                     onClick={() => navigate(`/edit-job/${job._id}`)}
-                    className="flex-1 rounded-xl border border-slate-300 py-2 font-medium text-slate-700 hover:bg-slate-50"
+                    className="secondary-btn flex-1 !py-2.5"
                   >
                     Edit
                   </button>
 
                   <button
                     onClick={() => handleDelete(job._id)}
-                    className="flex-1 rounded-xl bg-red-500 py-2 font-medium text-white hover:bg-red-600"
+                    className="danger-btn flex-1 !py-2.5"
                   >
                     Delete
                   </button>

@@ -30,89 +30,69 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100">
-      <div className="mx-auto grid min-h-screen max-w-7xl grid-cols-1 lg:grid-cols-2">
-        <div className="hidden lg:flex flex-col justify-center bg-gradient-to-br from-slate-900 to-blue-700 px-16 py-12 text-white">
-          <div className="max-w-xl">
-            <div className="mb-6 inline-flex items-center rounded-full bg-white/10 px-4 py-2 text-sm font-medium backdrop-blur">
-              Create your account
-            </div>
-
-            <h1 className="text-5xl font-bold leading-tight">
-              Start organizing your job hunt today.
-            </h1>
-
-            <p className="mt-6 text-lg text-slate-200">
-              Build your personal job application workspace and track every step
-              from applied to offer.
-            </p>
-          </div>
+    <div className="page-bg subtle-grid">
+      <div className="container-shell grid min-h-screen grid-cols-1 lg:grid-cols-2">
+        <div className="flex flex-col justify-center py-12 lg:pr-12">
+          <div className="pill-badge mb-6 w-fit">Create account</div>
+          <h1 className="hero-title">Start building your job search system.</h1>
+          <p className="mt-6 max-w-xl text-lg leading-8 text-slate-300">
+            Sign up to save applications, manage progress, and keep everything
+            structured from day one.
+          </p>
         </div>
 
-        <div className="flex items-center justify-center px-4 py-10">
-          <div className="w-full max-w-md rounded-3xl bg-white p-8 shadow-xl">
-            <h2 className="text-3xl font-bold text-slate-800">Create account</h2>
-            <p className="mt-2 text-sm text-slate-500">
-              Sign up to start using Job Tracker
+        <div className="flex items-center justify-center py-12">
+          <div className="glass-card w-full max-w-md p-8">
+            <h2 className="text-3xl font-bold text-white">Sign Up</h2>
+            <p className="mt-2 text-sm text-slate-400">
+              Create your Job Tracker account
             </p>
 
             <form onSubmit={handleSubmit} className="mt-8 space-y-5">
               <div>
-                <label className="mb-2 block text-sm font-medium text-slate-700">
-                  Name
-                </label>
+                <label className="label-text">Name</label>
                 <input
                   type="text"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Enter your name"
-                  className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  className="input-field"
                 />
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium text-slate-700">
-                  Email
-                </label>
+                <label className="label-text">Email</label>
                 <input
                   type="email"
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Enter your email"
-                  className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  className="input-field"
                 />
               </div>
 
               <div>
-                <label className="mb-2 block text-sm font-medium text-slate-700">
-                  Password
-                </label>
+                <label className="label-text">Password</label>
                 <input
                   type="password"
                   name="password"
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="Create a password"
-                  className="w-full rounded-xl border border-slate-300 px-4 py-3 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  className="input-field"
                 />
               </div>
 
-              <button
-                type="submit"
-                className="w-full rounded-xl bg-blue-600 py-3 text-white font-semibold transition hover:bg-blue-700"
-              >
-                Sign Up
+              <button type="submit" className="primary-btn w-full">
+                Create Account
               </button>
             </form>
 
-            <p className="mt-6 text-center text-sm text-slate-600">
+            <p className="mt-6 text-center text-sm text-slate-300">
               Already have an account?{" "}
-              <Link
-                to="/"
-                className="font-semibold text-blue-600 hover:underline"
-              >
+              <Link to="/login" className="font-semibold text-emerald-300 hover:text-emerald-200">
                 Login
               </Link>
             </p>

@@ -10,38 +10,29 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="bg-white shadow-sm border-b border-slate-200">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-4">
-        <Link to="/dashboard" className="flex items-center gap-3">
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-blue-600 text-lg font-bold text-white shadow">
+    <nav className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/40 backdrop-blur-xl">
+      <div className="container-shell flex items-center justify-between py-4">
+        <Link to="/" className="flex items-center gap-3">
+          <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-400 via-cyan-400 to-sky-500 font-bold text-slate-950 shadow-lg shadow-emerald-500/20">
             JT
           </div>
           <div>
-            <h1 className="text-lg font-bold text-slate-800">Job Tracker</h1>
-            <p className="text-xs text-slate-500">Track applications smarter</p>
+            <h1 className="text-lg font-bold text-white">Job Tracker</h1>
+            <p className="text-xs text-slate-400">Track applications beautifully</p>
           </div>
         </Link>
 
         {token && (
-          <div className="flex items-center gap-3">
-            <Link
-              to="/dashboard"
-              className="rounded-xl px-4 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100"
-            >
+          <div className="flex items-center gap-2 sm:gap-3">
+            <Link to="/dashboard" className="nav-link">
               Dashboard
             </Link>
 
-            <Link
-              to="/add-job"
-              className="rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-700"
-            >
+            <Link to="/add-job" className="primary-btn !px-4 !py-2.5 !text-sm">
               Add Job
             </Link>
 
-            <button
-              onClick={handleLogout}
-              className="rounded-xl border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:bg-slate-100"
-            >
+            <button onClick={handleLogout} className="secondary-btn !px-4 !py-2.5 !text-sm">
               Logout
             </button>
           </div>
