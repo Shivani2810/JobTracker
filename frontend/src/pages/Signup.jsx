@@ -23,7 +23,7 @@ const Signup = () => {
 
     try {
       await api.post("/auth/signup", formData);
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       alert(error.response?.data?.message || "Signup failed");
     }
